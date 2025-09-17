@@ -1,16 +1,197 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>NLP Search</title>
-	</head>
-	<body>
-		<h1>Enter your search query:</h1>
-
-		<form class="p-3 text-center" action='/', method="post">
-			<input class="form-control" type="text" name="search_text">
-			<input class="btn btn-primary mt-3" type="submit" value="Find the occurences">
-		</form>
-	</body>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NLP Search Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            color: #333;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #4a6cf7, #6a79f6);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-weight: 600;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            font-weight: 300;
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-section {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #444;
+            font-size: 18px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #6a79f6;
+            box-shadow: 0 0 0 3px rgba(106, 121, 246, 0.2);
+        }
+        
+        .search-btn {
+            background: linear-gradient(to right, #4a6cf7, #6a79f6);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+        
+        .search-btn:hover {
+            background: linear-gradient(to right, #405fd6, #5b68d8);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 121, 246, 0.4);
+        }
+        
+        .search-btn:active {
+            transform: translateY(0);
+        }
+        
+        .examples {
+            background: #f8f9ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .examples-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #4a6cf7;
+        }
+        
+        .example-item {
+            padding: 10px;
+            border-bottom: 1px dashed #ddd;
+            color: #666;
+        }
+        
+        .example-item:last-child {
+            border-bottom: none;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .search-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NLP Search Analyzer</h1>
+            <p class="description">Enter text to analyze with our advanced Natural Language Processing engine</p>
+        </header>
+        
+        <section class="search-section">
+            <form action="/" method="post">
+                <div class="form-group">
+                    <label for="search-text"><i class="fas fa-search"></i> Enter your search query:</label>
+                    <input type="text" id="search-text" name="search_text" class="search-input" placeholder="Type or paste your text here..." required>
+                </div>
+                <button type="submit" class="search-btn">
+                    <i class="fas fa-analytics"></i> Analyze Text
+                </button>
+            </form>
+            
+            <div class="examples">
+                <h3 class="examples-title">Example Queries</h3>
+                <div class="example-item">"Analyze the sentiment of customer reviews"</div>
+                <div class="example-item">"Extract key phrases from the document"</div>
+                <div class="example-item">"Identify all named entities in the text"</div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>NLP Search Analyzer &copy; 2023 | Powered by Advanced Natural Language Processing</p>
+    </footer>
+</body>
 </html>
